@@ -10,9 +10,16 @@ import CardHeader from '@mui/material/CardHeader';
 import Card from '@mui/material/Card'
 import IconButton from '@mui/material/IconButton';
 import Link from 'next/link';
+import PublishUserCNChart from '../components/molecules/publishUserCNChart';
+import PublishUserJOChart from '../components/molecules/publishUserJOChart';
+import PublishUserTrimbleChart from '../components/molecules/publishUserTrimbleChart';
+import PublishUserCFVChart from '../components/molecules/publishUserCFVChart';
+import NumberOfNotifications from '../components/molecules/numberOfNotifications';
+import OperationsProcessingMemoryChart from '../components/molecules/operationsProcessingMemoryChart';
+import OperationsProcessingCPU from '../components/molecules/OperationsProcessingCPU';
 
 
-function Dashboard(){
+function Dashboard({data}){
 
     return(
     <Box sx={{ display: 'flex' }}>
@@ -25,7 +32,8 @@ function Dashboard(){
             }}
           >
             <Link href="/">
-                <img src="/LeafMainLogo.png" width="40px" />
+                {/*eslint-disable-next-line @next/next/no-img-element*/}
+                <img src="/LeafMainLogo.png" width="40px" alt="logo" />
             </Link>
           </Toolbar>
         </AppBar>
@@ -48,7 +56,7 @@ function Dashboard(){
                   sx={{
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 240,
+                    height: 300,
                     fontSize: '16px'
                   }}
                 >
@@ -61,7 +69,7 @@ function Dashboard(){
                     title="Publish User CN"
                     disableTypography={true}
                 />
-                 {/* <PublishUserCN />*/}
+                    <PublishUserCNChart />
                 </Card>
               </Grid>
             
@@ -70,7 +78,7 @@ function Dashboard(){
                     sx={{
                       display: 'flex',
                       flexDirection: 'column',
-                      height: 240,
+                      height: 300,
                       fontSize: '16px'
                     }}
                   >
@@ -83,7 +91,7 @@ function Dashboard(){
                     title="Publish User - Jo"
                     disableTypography={true}
                 />
-                  {/*<PublishUserJO />*/}
+                  <PublishUserJOChart />
                 </Card>
               </Grid>
 
@@ -92,7 +100,7 @@ function Dashboard(){
                     sx={{
                       display: 'flex',
                       flexDirection: 'column',
-                      height: 240,
+                      height: 300,
                       fontSize: '16px'
                     }}
                 >
@@ -105,7 +113,7 @@ function Dashboard(){
                     title="Publish User - Trimble - Error count and success"
                     disableTypography={true}
                 />
-                  {/*<PublishUserTrimble />*/}
+                  <PublishUserTrimbleChart />
                 </Card>
               </Grid>
 
@@ -114,7 +122,7 @@ function Dashboard(){
                     sx={{
                       display: 'flex',
                       flexDirection: 'column',
-                      height: 240,
+                      height: 300,
                       fontSize: '16px'
                     }}
                   >
@@ -127,7 +135,7 @@ function Dashboard(){
                     title="Publish User - CFV - Error count and success"
                     disableTypography={true}
                 />
-                  {/*<PublishUserJO />*/}
+                  <PublishUserCFVChart />
                 </Card>
               </Grid>
 
@@ -136,7 +144,7 @@ function Dashboard(){
                     sx={{
                       display: 'flex',
                       flexDirection: 'column',
-                      height: 240,
+                      height: 300,
                       fontSize: '16px'
                     }}
                   >
@@ -149,7 +157,7 @@ function Dashboard(){
                     title="Operations Processing - CPUUtilization"
                     disableTypography={true}
                 />
-                 {/* <OperationProcessingCPU /> */}
+                 <OperationsProcessingCPU />
                 </Card>
               </Grid>
             
@@ -159,7 +167,7 @@ function Dashboard(){
                   sx={{
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 240,
+                    height: 300,
                     fontSize: '16px',
                     alignItems: 'center'
                   }}
@@ -172,8 +180,8 @@ function Dashboard(){
                     }
                     title="Operations Processing - MemoryUtilization"
                     disableTypography={true}
-                />
-                 {/*<OperationsProcessingMemory />*/}
+                />         
+                  <OperationsProcessingMemoryChart />
                 </Card>
               </Grid>
 
@@ -182,7 +190,7 @@ function Dashboard(){
                   sx={{
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 240,
+                    height: 300,
                     fontSize: '16px'
                   }}
                 >
@@ -195,7 +203,7 @@ function Dashboard(){
                     title="Number of Notifications Delivered Sum"
                     disableTypography={true}
                 />
-                 {/* <NumberOfNotifications />*/}
+                    <NumberOfNotifications />
                 </Card>
               </Grid>
 
@@ -206,5 +214,6 @@ function Dashboard(){
       </Box>
     )
 }
+
 
 export default Dashboard;

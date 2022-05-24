@@ -6,17 +6,25 @@ import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import router from 'next/router';
 
-export default function Form() {
+const LoginForm = () => {
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-          email: data.get('email'),
-          password: data.get('password'),
-        });
+  const margin = { margin: '8px 0' };
+
+  const initialValues = {
+        username: '',
+        password: '',
+        remember: false
     }
+
+  const validationSchema = Yup.object().shape({
+        username: Yup.string().email('please enter valid email').required("Required"),
+        password: Yup.string().required("Required")
+    })
+
 
     return(
         <Box
@@ -30,44 +38,37 @@ export default function Form() {
             borderRadius: "15px"
           }}
         >
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, padding: "40px"}}>
+          <Box component="form" sx={{ mt: 1, padding: "40px"}}>
           <Typography component="h1" variant="h5" align='center'>
             Login
           </Typography>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="senha"
-              label="Senha"
-              type="senha"
-              id="senha"
-              autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              href="/dashboard"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Entrar
-            </Button>
-            <Grid container>
+            <Formik initialValues={initialValues} validationSchema={validationSchema}>
+              {(props) => (
+                  <Form>
+                      <Field as={TextField} label='Username' name="username" style={margin}
+                          placeholder='Enter username' fullWidth required
+                          helperText={<ErrorMessage name="username" />}
+                      />
+                      <Field as={TextField} label='Password' name="password" style={margin}
+                          placeholder='Enter password' type='password' fullWidth required
+                          helperText={<ErrorMessage name="password" />} />
+                      <Field as={FormControlLabel}
+                          name='remember'
+                          control={
+                              <Checkbox
+                                  color="primary"
+                              />
+                          }
+                          label="Remember me"
+                      />
+                      <Button type='submit' color='primary' variant="contained" href="/dashboard"
+                        style={margin} fullWidth>Login</Button>
+
+                  </Form>
+              )}
+            </Formik>
+
+            <Grid container sx={{marginTop: '8px'}}>
               <Grid item xs>
                 <Link href="/esqueciSenha" variant="body2">
                   Esqueci a senha?
@@ -83,3 +84,5 @@ export default function Form() {
         </Box>
     )
 }
+
+export default LoginForm;
