@@ -16,7 +16,7 @@ import PublishUserTrimbleChart from '../components/molecules/publishUserTrimbleC
 import PublishUserCFVChart from '../components/molecules/publishUserCFVChart';
 import NumberOfNotifications from '../components/molecules/numberOfNotifications';
 import OperationsProcessingMemoryChart from '../components/molecules/operationsProcessingMemoryChart';
-import OperationsProcessingCPU from '../components/molecules/OperationsProcessingCPU';
+import OperationsProcessingCPU from '../components/molecules/operationsProcessingCPU';
 
 
 function Dashboard({data}){
